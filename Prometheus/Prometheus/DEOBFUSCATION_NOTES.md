@@ -34,3 +34,16 @@ This keeps generated Lua performance unchanged while still improving tooling erg
 - closes file/process handles consistently.
 
 These changes target better stability and lower overhead without changing obfuscated script runtime semantics.
+
+## Runtime error fix for `attempt to index nil with number`
+
+If obfuscated output is executed inside Roblox `LocalScript` via `loadstring(game:HttpGet(...))()`,
+the main cause is usually compatibility issues from VM-heavy steps under sandboxed environments.
+
+Use:
+- preset: `RobloxSafe`
+- Lua target: `LuaU`
+
+This repo now includes both:
+- preset entry: `src/presets.lua -> RobloxSafe`
+- config file: `configs/roblox_safe.lua`

@@ -46,6 +46,24 @@ return(function(...)local L={"afT6mf1V","/7mJXsuvmE1c/fT3";"tn1ZSn6=","37ghSJM="
 
 For more advanced use cases see the [Documentation](https://levno-710.gitbook.io/prometheus/).
 
+## Roblox/LocalScript compatibility
+
+If you are executing obfuscated output through `loadstring(game:HttpGet(...))()` in Roblox environments,
+prefer the new `RobloxSafe` preset:
+
+```lua
+lua ./cli.lua --preset RobloxSafe ./your_file.lua
+```
+
+Or explicitly force LuaU:
+
+```lua
+lua ./cli.lua --preset RobloxSafe --LuaU ./your_file.lua
+```
+
+This avoids VM-based runtime steps that commonly cause runtime failures like
+`attempt to index nil with number` in restricted/sandboxed execution environments.
+
 ## Deobfuscation helper
 
 A best-effort analysis tool is included for Prometheus-like output:
